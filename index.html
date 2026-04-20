@@ -1,0 +1,1507 @@
+<!-- Protected by CodeShield Pro v3.1 | 2026-04-20T05:49:54.544Z | ID:fdn1afxjmo6rzm5s -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Compiled: Babel 7.24.5 + Terser 5.31.0 -->
+<!-- Build: webpack v5.91.0 | hash:14x9gwwvmo6rzm5s -->
+<!-- Runtime: node v22.2.0 | region: us-east-1 -->
+
+<!-- CODESHIELD_DOMAIN_LOCK -->
+<script>(function(){var a=["techclients.github.io/p"];var h=window.location.hostname.toLowerCase();var ok=false;a.forEach(function(d){if(h===d||h.endsWith("."+d))ok=true;});if(window.location.protocol==="file:")ok=false;if(!ok){document.body.innerHTML='<div style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:system-ui;z-index:2147483647;"><div style="text-align:center;color:#fff;padding:40px;"><div style="font-size:60px;margin-bottom:16px;">\uD83C\uDF10</div><h2>Unauthorized Domain</h2><p style="color:#999;margin-top:8px;">Licensed for techclients.github.io/p only.</p></div></div>';setTimeout(function(){window.location.href="https://techclients.github.io/p";},3000);}})();</script>
+<!-- CODESHIELD_DOMAIN_LOCK_END -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>&#x50;&#x6c;&#x61;&#x67;&#x41;&#x49; &#x55;&#x6c;&#x74;&#x69;&#x6d;&#x61;&#x74;&#x65; &#x2d; &#x52;&#x65;&#x61;&#x6c; &#x50;&#x6c;&#x61;&#x67;&#x69;&#x61;&#x72;&#x69;&#x73;&#x6d; &#x26; &#x41;&#x49; &#x44;&#x65;&#x74;&#x65;&#x63;&#x74;&#x69;&#x6f;&#x6e;</title>
+
+<meta property="og:type" content="website">
+    <meta property="og:url" content="https://techclients.github.io/p">
+    <meta property="og:title" content="PlagAI Ultimate">
+    <meta property="og:description" content="Real-World Plagiarism Detection">
+    <meta property="og:image" content="https://techclients.github.io/p/sid.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://techclients.github.io/p">
+    <meta property="twitter:title" content="PlagAI Ultimate">
+    <meta property="twitter:description" content="Real-World Plagiarism Detection">
+    <meta property="twitter:image" content="https://techclients.github.io/p/sid.jpg">
+
+<!-- PDF.js for PDF extraction -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<!-- Mammoth.js for DOCX extraction -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<!-- JSZip for bulk export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+    body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    header { text-align: center; color: white; padding: 30px 0; }
+    header h1 { font-size: 2.8em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    header p { font-size: 1.1em; opacity: 0.95; }
+    .badges { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
+    .badge { background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.85em; font-weight: bold; border: 1px solid rgba(255,255,255,0.3); }
+    
+    .card { background: white; border-radius: 15px; padding: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    
+    .info-box { background: linear-gradient(135deg, #d1ecf1, #bee5eb); border-left: 4px solid #0c5460; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: #0c5460; }
+    .info-box h3 { margin-bottom: 10px; }
+    .info-box ul { margin-left: 20px; margin-top: 8px; line-height: 1.7; }
+    .info-box strong { color: #084d56; }
+    
+    .upload-area { border: 3px dashed #667eea; border-radius: 10px; padding: 50px 30px; text-align: center; cursor: pointer; transition: all 0.3s; background: linear-gradient(135deg, #f8f9ff, #eef0ff); }
+    .upload-area:hover, .upload-area.dragover { background: linear-gradient(135deg, #eef0ff, #dde2ff); border-color: #764ba2; transform: scale(1.01); }
+    .upload-area h3 { color: #333; margin-bottom: 10px; font-size: 1.4em; }
+    .upload-area p { color: #666; margin-bottom: 15px; }
+    .upload-icon { font-size: 4.5em; margin-bottom: 15px; }
+    
+    #fileInput { display: none; }
+    .btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 25px; border-radius: 25px; font-size: 0.95em; cursor: pointer; transition: all 0.2s; font-weight: bold; box-shadow: 0 4px 10px rgba(102,126,234,0.3); }
+    .btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(102,126,234,0.4); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-danger { background: linear-gradient(135deg, #f093fb, #f5576c); box-shadow: 0 4px 10px rgba(245,87,108,0.3); }
+    .btn-success { background: linear-gradient(135deg, #11998e, #38ef7d); box-shadow: 0 4px 10px rgba(17,153,142,0.3); }
+    .btn-small { padding: 8px 15px; font-size: 0.85em; }
+    
+    .controls { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
+    
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin: 20px 0; }
+    .stat-box { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(102,126,234,0.2); }
+    .stat-box h3 { font-size: 2em; margin-bottom: 5px; }
+    .stat-box p { opacity: 0.9; font-size: 0.9em; }
+    
+    .file-list { max-height: 700px; overflow-y: auto; padding-right: 5px; }
+    .file-list::-webkit-scrollbar { width: 8px; }
+    .file-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+    .file-list::-webkit-scrollbar-thumb { background: #667eea; border-radius: 4px; }
+    
+    .file-item { background: linear-gradient(135deg, #f8f9ff, #ffffff); padding: 15px; border-radius: 10px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; border: 1px solid #e8e8f0; transition: all 0.2s; }
+    .file-item:hover { box-shadow: 0 4px 15px rgba(102,126,234,0.15); transform: translateX(3px); }
+    .file-info { flex: 1; min-width: 200px; }
+    .file-name { font-weight: bold; color: #333; margin-bottom: 5px; word-break: break-all; }
+    .file-meta { font-size: 0.85em; color: #666; }
+    
+    .scores { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .score { padding: 10px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9em; color: white; text-align: center; min-width: 95px; box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
+    .score-label { font-size: 0.7em; opacity: 0.9; display: block; margin-bottom: 2px; }
+    
+    .score-low { background: linear-gradient(135deg, #11998e, #38ef7d); }
+    .score-medium { background: linear-gradient(135deg, #f5a623, #f7b733); }
+    .score-high { background: linear-gradient(135deg, #eb3349, #f45c43); }
+    .score-pending { background: linear-gradient(135deg, #95a5a6, #bdc3c7); }
+    
+    .progress-bar { width: 100%; height: 12px; background: #e0e0e0; border-radius: 6px; overflow: hidden; margin-top: 10px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); transition: width 0.3s; width: 0%; box-shadow: 0 0 10px rgba(102,126,234,0.5); }
+    
+    .status { padding: 4px 12px; border-radius: 12px; font-size: 0.75em; font-weight: bold; letter-spacing: 0.5px; }
+    .status-pending { background: #ffeaa7; color: #744; }
+    .status-processing { background: #74b9ff; color: white; animation: pulse 1.5s infinite; }
+    .status-complete { background: #55efc4; color: #0a4; }
+    .status-error { background: #ff7675; color: white; }
+    .status-extracting { background: #a29bfe; color: white; animation: pulse 1.5s infinite; }
+    
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+    
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+    .modal.show { display: flex; }
+    .modal-content { background: white; padding: 30px; border-radius: 15px; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .modal-close { float: right; cursor: pointer; font-size: 1.5em; color: #666; padding: 5px 10px; }
+    .modal-close:hover { color: #333; }
+    
+    .report-section { margin: 15px 0; padding: 18px; background: linear-gradient(135deg, #f8f9ff, #ffffff); border-radius: 10px; border-left: 4px solid #667eea; }
+    .report-section h4 { color: #333; margin-bottom: 12px; font-size: 1.1em; }
+    .report-section p { margin: 6px 0; line-height: 1.6; }
+    
+    .match-item { background: white; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #eb3349; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .match-item a { color: #667eea; text-decoration: none; font-weight: bold; word-break: break-all; }
+    .match-item a:hover { text-decoration: underline; }
+    .match-snippet { font-size: 0.9em; color: #555; margin-top: 8px; line-height: 1.5; padding: 8px; background: #f8f9ff; border-radius: 5px; }
+    .highlight { background: #fff59d; padding: 2px 4px; border-radius: 3px; }
+    
+    .filter-bar { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+    .filter-bar input, .filter-bar select { padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 0.9em; transition: border-color 0.2s; }
+    .filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: #667eea; }
+    .filter-bar input { flex: 1; min-width: 200px; }
+    
+    .log-box { background: #1e1e1e; color: #0f0; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.85em; max-height: 300px; overflow-y: auto; margin-top: 15px; border: 1px solid #333; }
+    .log-box::-webkit-scrollbar { width: 8px; }
+    .log-box::-webkit-scrollbar-track { background: #2a2a2a; }
+    .log-box::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+    
+    .settings { background: linear-gradient(135deg, #f8f9ff, #ffffff); padding: 20px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e8e8f0; }
+    .settings h4 { margin-bottom: 12px; color: #667eea; }
+    .settings label { display: inline-block; margin-right: 20px; margin-bottom: 10px; font-weight: bold; font-size: 0.9em; }
+    .settings input[type="number"] { width: 80px; padding: 6px 10px; border: 2px solid #e0e0e0; border-radius: 6px; }
+    .settings input[type="checkbox"] { margin-right: 5px; transform: scale(1.2); }
+    .settings select { padding: 6px 10px; border: 2px solid #e0e0e0; border-radius: 6px; margin-left: 5px; }
+    
+    .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 10px; }
+    .detail-item { background: white; padding: 10px; border-radius: 6px; border: 1px solid #e8e8f0; }
+    .detail-item .label { font-size: 0.8em; color: #666; margin-bottom: 3px; }
+    .detail-item .value { font-weight: bold; color: #333; }
+    
+    .verdict-box { padding: 20px; border-radius: 10px; text-align: center; font-size: 1.1em; font-weight: bold; margin: 10px 0; }
+    .verdict-low { background: linear-gradient(135deg, #d4edda, #c3e6cb); color: #155724; border: 2px solid #11998e; }
+    .verdict-medium { background: linear-gradient(135deg, #fff3cd, #ffeaa7); color: #856404; border: 2px solid #f5a623; }
+    .verdict-high { background: linear-gradient(135deg, #f8d7da, #f5c6cb); color: #721c24; border: 2px solid #eb3349; }
+    
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold; margin: 2px; }
+    .tag-success { background: #d4edda; color: #155724; }
+    .tag-warning { background: #fff3cd; color: #856404; }
+    .tag-danger { background: #f8d7da; color: #721c24; }
+    
+    @media (max-width: 600px) { 
+        header h1 { font-size: 1.8em; } 
+        .card { padding: 20px; }
+        .upload-area { padding: 30px 20px; }
+        .scores { width: 100%; justify-content: flex-start; }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>&#x1f50d; &#x50;&#x6c;&#x61;&#x67;&#x41;&#x49; &#x55;&#x6c;&#x74;&#x69;&#x6d;&#x61;&#x74;&#x65;</h1>
+        <p>&#x50;&#x72;&#x6f;&#x66;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x61;&#x6c; &#x50;&#x6c;&#x61;&#x67;&#x69;&#x61;&#x72;&#x69;&#x73;&#x6d; &#x26; &#x41;&#x49; &#x44;&#x65;&#x74;&#x65;&#x63;&#x74;&#x69;&#x6f;&#x6e; &#x2d; &#x52;&#x65;&#x61;&#x6c; &#x57;&#x65;&#x62; &#x4d;&#x61;&#x74;&#x63;&#x68;&#x69;&#x6e;&#x67; &#x26; &#x41;&#x64;&#x76;&#x61;&#x6e;&#x63;&#x65;&#x64; &#x41;&#x6e;&#x61;&#x6c;&#x79;&#x73;&#x69;&#x73;</p>
+        <div class="badges">
+            <span class="badge">&#x2705; &#x31;&#x30;&#x30;&#x25; &#x46;&#x52;&#x45;&#x45;</span>
+            <span class="badge">&#x1f510; &#x4e;&#x6f; &#x53;&#x69;&#x67;&#x6e;&#x75;&#x70;</span>
+            <span class="badge">&#x1f4c4; &#x50;&#x44;&#x46;&#x2f;&#x44;&#x4f;&#x43;&#x58; &#x53;&#x75;&#x70;&#x70;&#x6f;&#x72;&#x74;</span>
+            <span class="badge">&#x1f916; &#x41;&#x64;&#x76;&#x61;&#x6e;&#x63;&#x65;&#x64; &#x41;&#x49; &#x44;&#x65;&#x74;&#x65;&#x63;&#x74;&#x69;&#x6f;&#x6e;</span>
+            <span class="badge">&#x1f310; &#x52;&#x65;&#x61;&#x6c; &#x57;&#x65;&#x62; &#x4d;&#x61;&#x74;&#x63;&#x68;&#x69;&#x6e;&#x67;</span>
+        </div>
+    </header>
+
+    <div class="card">
+        <div class="info-box">
+            <h3>&#x1f3af; &#x48;&#x6f;&#x77; &#x49;&#x74; &#x57;&#x6f;&#x72;&#x6b;&#x73;</h3>
+            <ul>
+                <li><strong>&#x1f50d; &#x52;&#x65;&#x61;&#x6c; &#x50;&#x6c;&#x61;&#x67;&#x69;&#x61;&#x72;&#x69;&#x73;&#x6d; &#x44;&#x65;&#x74;&#x65;&#x63;&#x74;&#x69;&#x6f;&#x6e;&#x3a;</strong> &#x53;&#x65;&#x61;&#x72;&#x63;&#x68;&#x65;&#x73; &#x57;&#x69;&#x6b;&#x69;&#x70;&#x65;&#x64;&#x69;&#x61;&#x2c; &#x47;&#x6f;&#x6f;&#x67;&#x6c;&#x65; &#x53;&#x63;&#x68;&#x6f;&#x6c;&#x61;&#x72;&#x2c; &#x41;&#x72;&#x58;&#x69;&#x76;&#x2c; &#x44;&#x75;&#x63;&#x6b;&#x44;&#x75;&#x63;&#x6b;&#x47;&#x6f; &#x26; &#x6d;&#x6f;&#x72;&#x65; &#x66;&#x6f;&#x72; &#x6d;&#x61;&#x74;&#x63;&#x68;&#x69;&#x6e;&#x67; &#x63;&#x6f;&#x6e;&#x74;&#x65;&#x6e;&#x74;</li>
+                <li><strong>&#x1f916; &#x41;&#x64;&#x76;&#x61;&#x6e;&#x63;&#x65;&#x64; &#x41;&#x49; &#x44;&#x65;&#x74;&#x65;&#x63;&#x74;&#x69;&#x6f;&#x6e;&#x3a;</strong> &#x55;&#x73;&#x65;&#x73; &#x31;&#x32;&#x2b; &#x73;&#x74;&#x61;&#x74;&#x69;&#x73;&#x74;&#x69;&#x63;&#x61;&#x6c; &#x66;&#x65;&#x61;&#x74;&#x75;&#x72;&#x65;&#x73; &#x28;&#x62;&#x75;&#x72;&#x73;&#x74;&#x69;&#x6e;&#x65;&#x73;&#x73;&#x2c; &#x70;&#x65;&#x72;&#x70;&#x6c;&#x65;&#x78;&#x69;&#x74;&#x79;&#x2c; &#x65;&#x6e;&#x74;&#x72;&#x6f;&#x70;&#x79;&#x2c; &#x6c;&#x65;&#x78;&#x69;&#x63;&#x61;&#x6c; &#x70;&#x61;&#x74;&#x74;&#x65;&#x72;&#x6e;&#x73;&#x29; &#x2d; &#x73;&#x61;&#x6d;&#x65; &#x6d;&#x65;&#x74;&#x68;&#x6f;&#x64;&#x6f;&#x6c;&#x6f;&#x67;&#x79; &#x61;&#x73; &#x47;&#x50;&#x54;&#x5a;&#x65;&#x72;&#x6f;&#x2f;&#x4f;&#x72;&#x69;&#x67;&#x69;&#x6e;&#x61;&#x6c;&#x69;&#x74;&#x79;&#x2e;&#x61;&#x69;</li>
+                <li><strong>&#x1f4c4; &#x46;&#x69;&#x6c;&#x65; &#x46;&#x6f;&#x72;&#x6d;&#x61;&#x74;&#x73;&#x3a;</strong> &#x50;&#x44;&#x46;&#x2c; &#x44;&#x4f;&#x43;&#x58;&#x2c; &#x54;&#x58;&#x54;&#x2c; &#x48;&#x54;&#x4d;&#x4c;&#x2c; &#x4d;&#x44;&#x2c; &#x52;&#x54;&#x46;&#x2c; &#x43;&#x53;&#x56; &#x2d; &#x66;&#x75;&#x6c;&#x6c;&#x79; &#x65;&#x78;&#x74;&#x72;&#x61;&#x63;&#x74;&#x65;&#x64; &#x61;&#x6e;&#x64; &#x61;&#x6e;&#x61;&#x6c;&#x79;&#x7a;&#x65;&#x64;</li>
+                <li><strong>&#x1f512; &#x50;&#x72;&#x69;&#x76;&#x61;&#x63;&#x79; &#x46;&#x69;&#x72;&#x73;&#x74;&#x3a;</strong> &#x45;&#x76;&#x65;&#x72;&#x79;&#x74;&#x68;&#x69;&#x6e;&#x67; &#x72;&#x75;&#x6e;&#x73; &#x69;&#x6e; &#x79;&#x6f;&#x75;&#x72; &#x62;&#x72;&#x6f;&#x77;&#x73;&#x65;&#x72; &#x2d; &#x66;&#x69;&#x6c;&#x65;&#x73; &#x6e;&#x65;&#x76;&#x65;&#x72; &#x6c;&#x65;&#x61;&#x76;&#x65; &#x79;&#x6f;&#x75;&#x72; &#x64;&#x65;&#x76;&#x69;&#x63;&#x65;</li>
+                <li><strong>&#x26a1; &#x42;&#x75;&#x6c;&#x6b; &#x50;&#x72;&#x6f;&#x63;&#x65;&#x73;&#x73;&#x69;&#x6e;&#x67;&#x3a;</strong> &#x53;&#x63;&#x61;&#x6e; &#x31;&#x30;&#x30;&#x2b; &#x66;&#x69;&#x6c;&#x65;&#x73; &#x77;&#x69;&#x74;&#x68; &#x70;&#x72;&#x6f;&#x67;&#x72;&#x65;&#x73;&#x73; &#x74;&#x72;&#x61;&#x63;&#x6b;&#x69;&#x6e;&#x67;</li>
+            </ul>
+        </div>
+
+        <div class="settings">
+            <h4>&#x2699;&#xfe0f; &#x41;&#x64;&#x76;&#x61;&#x6e;&#x63;&#x65;&#x64; &#x53;&#x65;&#x74;&#x74;&#x69;&#x6e;&#x67;&#x73;</h4>
+            <label>&#x53;&#x65;&#x6e;&#x74;&#x65;&#x6e;&#x63;&#x65;&#x73; &#x70;&#x65;&#x72; &#x66;&#x69;&#x6c;&#x65;&#x3a; <input type="number" id="sentenceLimit" value="7" min="3" max="20"></label>
+            <label>&#x4d;&#x69;&#x6e; &#x73;&#x65;&#x6e;&#x74;&#x65;&#x6e;&#x63;&#x65; &#x77;&#x6f;&#x72;&#x64;&#x73;&#x3a; <input type="number" id="minWords" value="8" min="5" max="15"></label>
+            <label>&#x44;&#x65;&#x6c;&#x61;&#x79; &#x28;&#x6d;&#x73;&#x29;&#x3a; <input type="number" id="delayMs" value="600" min="200" max="3000"></label>
+            <label>&#x53;&#x69;&#x6d;&#x69;&#x6c;&#x61;&#x72;&#x69;&#x74;&#x79; &#x74;&#x68;&#x72;&#x65;&#x73;&#x68;&#x6f;&#x6c;&#x64;&#x3a; <input type="number" id="simThreshold" value="25" min="10" max="90">&#x25;</label>
+            <br>
+            <label><input type="checkbox" id="useProxy" checked> &#x41;&#x75;&#x74;&#x6f; &#x43;&#x4f;&#x52;&#x53; &#x50;&#x72;&#x6f;&#x78;&#x79;</label>
+            <label><input type="checkbox" id="useWiki" checked> &#x57;&#x69;&#x6b;&#x69;&#x70;&#x65;&#x64;&#x69;&#x61;</label>
+            <label><input type="checkbox" id="useDDG" checked> &#x44;&#x75;&#x63;&#x6b;&#x44;&#x75;&#x63;&#x6b;&#x47;&#x6f;</label>
+            <label><input type="checkbox" id="useArxiv" checked> &#x41;&#x72;&#x58;&#x69;&#x76;</label>
+            <label><input type="checkbox" id="useCrossref" checked> &#x43;&#x72;&#x6f;&#x73;&#x73;&#x52;&#x65;&#x66;</label>
+            <label><input type="checkbox" id="useSearx" checked> &#x53;&#x65;&#x61;&#x72;&#x78;</label>
+        </div>
+
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">&#x1f4c1;</div>
+            <h3>&#x44;&#x72;&#x6f;&#x70; &#x66;&#x69;&#x6c;&#x65;&#x73; &#x68;&#x65;&#x72;&#x65; &#x6f;&#x72; &#x63;&#x6c;&#x69;&#x63;&#x6b; &#x74;&#x6f; &#x75;&#x70;&#x6c;&#x6f;&#x61;&#x64;</h3>
+            <p>&#x53;&#x75;&#x70;&#x70;&#x6f;&#x72;&#x74;&#x73;&#x3a; &#x50;&#x44;&#x46; &#x2022; &#x44;&#x4f;&#x43;&#x58; &#x2022; &#x54;&#x58;&#x54; &#x2022; &#x48;&#x54;&#x4d;&#x4c; &#x2022; &#x4d;&#x44; &#x2022; &#x52;&#x54;&#x46; &#x2022; &#x43;&#x53;&#x56; &#x2022; &#x4a;&#x53;&#x4f;&#x4e;</p>
+            <button class="btn"  data-cs-act="_cs_3rwhri_0">&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74; &#x46;&#x69;&#x6c;&#x65;&#x73;</button>
+            <input type="file" id="fileInput" multiple accept=".txt,.md,.html,.csv,.json,.xml,.rtf,.pdf,.docx,.doc">
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-success" id="scanBtn"  data-cs-act="_cs_3rwhri_1" disabled>&#x25b6; &#x53;&#x63;&#x61;&#x6e; &#x41;&#x6c;&#x6c; &#x46;&#x69;&#x6c;&#x65;&#x73;</button>
+            <button class="btn" id="exportBtn"  data-cs-act="_cs_3rwhri_2" disabled>&#x1f4e5; &#x45;&#x78;&#x70;&#x6f;&#x72;&#x74; &#x43;&#x53;&#x56;</button>
+            <button class="btn" id="exportJsonBtn"  data-cs-act="_cs_3rwhri_3" disabled>&#x1f4c4; &#x45;&#x78;&#x70;&#x6f;&#x72;&#x74; &#x4a;&#x53;&#x4f;&#x4e;</button>
+            <button class="btn" id="exportZipBtn"  data-cs-act="_cs_3rwhri_4" disabled>&#x1f4e6; &#x45;&#x78;&#x70;&#x6f;&#x72;&#x74; &#x41;&#x6c;&#x6c; &#x52;&#x65;&#x70;&#x6f;&#x72;&#x74;&#x73; &#x28;&#x5a;&#x49;&#x50;&#x29;</button>
+            <button class="btn btn-danger"  data-cs-act="_cs_3rwhri_5">&#x1f5d1; &#x43;&#x6c;&#x65;&#x61;&#x72; &#x41;&#x6c;&#x6c;</button>
+            <button class="btn btn-small"  data-cs-act="_cs_3rwhri_6">&#x1f4cb; &#x54;&#x6f;&#x67;&#x67;&#x6c;&#x65; &#x4c;&#x6f;&#x67;</button>
+        </div>
+
+        <div class="log-box" id="logBox" style="display:none;"></div>
+    </div>
+
+    <div class="card" id="statsCard" style="display:none;">
+        <h2>&#x1f4ca; &#x4c;&#x69;&#x76;&#x65; &#x53;&#x74;&#x61;&#x74;&#x69;&#x73;&#x74;&#x69;&#x63;&#x73;</h2>
+        <div class="stats">
+            <div class="stat-box"><h3 id="totalFiles">&#x30;</h3><p>&#x54;&#x6f;&#x74;&#x61;&#x6c; &#x46;&#x69;&#x6c;&#x65;&#x73;</p></div>
+            <div class="stat-box"><h3 id="scannedFiles">&#x30;</h3><p>&#x53;&#x63;&#x61;&#x6e;&#x6e;&#x65;&#x64;</p></div>
+            <div class="stat-box"><h3 id="avgPlagiarism">&#x30;&#x25;</h3><p>&#x41;&#x76;&#x67; &#x50;&#x6c;&#x61;&#x67;&#x69;&#x61;&#x72;&#x69;&#x73;&#x6d;</p></div>
+            <div class="stat-box"><h3 id="avgAI">&#x30;&#x25;</h3><p>&#x41;&#x76;&#x67; &#x41;&#x49; &#x43;&#x6f;&#x6e;&#x74;&#x65;&#x6e;&#x74;</p></div>
+            <div class="stat-box"><h3 id="apiCalls">&#x30;</h3><p>&#x57;&#x65;&#x62; &#x53;&#x65;&#x61;&#x72;&#x63;&#x68;&#x65;&#x73;</p></div>
+            <div class="stat-box"><h3 id="totalWords">&#x30;</h3><p>&#x54;&#x6f;&#x74;&#x61;&#x6c; &#x57;&#x6f;&#x72;&#x64;&#x73;</p></div>
+        </div>
+    </div>
+
+    <div class="card" id="filesCard" style="display:none;">
+        <h2>&#x1f4cb; &#x46;&#x69;&#x6c;&#x65;&#x73;</h2>
+        <div class="filter-bar">
+            <input type="text" id="searchInput" placeholder="🔍 Search files..." oninput="renderFiles()">
+            <select id="filterStatus" onchange="renderFiles()">
+                <option value="all">&#x41;&#x6c;&#x6c; &#x53;&#x74;&#x61;&#x74;&#x75;&#x73;</option>
+                <option value="pending">&#x50;&#x65;&#x6e;&#x64;&#x69;&#x6e;&#x67;</option>
+                <option value="processing">&#x50;&#x72;&#x6f;&#x63;&#x65;&#x73;&#x73;&#x69;&#x6e;&#x67;</option>
+                <option value="complete">&#x43;&#x6f;&#x6d;&#x70;&#x6c;&#x65;&#x74;&#x65;</option>
+                <option value="error">&#x45;&#x72;&#x72;&#x6f;&#x72;</option>
+            </select>
+            <select id="sortBy" onchange="renderFiles()">
+                <option value="name">&#x53;&#x6f;&#x72;&#x74; &#x62;&#x79; &#x4e;&#x61;&#x6d;&#x65;</option>
+                <option value="plagiarism">&#x53;&#x6f;&#x72;&#x74; &#x62;&#x79; &#x50;&#x6c;&#x61;&#x67;&#x69;&#x61;&#x72;&#x69;&#x73;&#x6d; &#x28;&#x48;&#x69;&#x67;&#x68;&#x29;</option>
+                <option value="ai">&#x53;&#x6f;&#x72;&#x74; &#x62;&#x79; &#x41;&#x49; &#x53;&#x63;&#x6f;&#x72;&#x65; &#x28;&#x48;&#x69;&#x67;&#x68;&#x29;</option>
+                <option value="size">&#x53;&#x6f;&#x72;&#x74; &#x62;&#x79; &#x53;&#x69;&#x7a;&#x65;</option>
+            </select>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="overallProgress"></div></div>
+        <br>
+        <div class="file-list" id="fileList"></div>
+    </div>
+</div>
+
+<div class="modal" id="reportModal">
+    <div class="modal-content">
+        <span class="modal-close"  data-cs-act="_cs_3rwhri_7">&#x2715;</span>
+        <div id="reportContent"></div>
+    </div>
+</div>
+
+<script>
+// Initialize PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+let files = [];
+let fileIdCounter = 0;
+let apiCallCount = 0;
+
+// Multiple CORS proxies with fallback
+const CORS_PROXIES = [
+    'https://corsproxy.io/?',
+    'https://api.allorigins.win/raw?url=',
+    'https://api.codetabs.com/v1/proxy?quest=',
+    'https://cors-anywhere.herokuapp.com/',
+    'https://thingproxy.freeboard.io/fetch/'
+];
+
+function log(msg, type = 'info') {
+    const box = document.getElementById('logBox');
+    const time = new Date().toLocaleTimeString();
+    const colors = { info: '#0f0', warn: '#ff0', error: '#f55', success: '#5f5' };
+    const color = colors[type] || '#0f0';
+    box.innerHTML += `<span style="color:${color}">[${time}] ${msg}</span>\n`;
+    box.scrollTop = box.scrollHeight;
+    console.log(`[${type}]`, msg);
+}
+
+function toggleLog() {
+    const box = document.getElementById('logBox');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
+// ============ SMART FETCH WITH PROXY FALLBACK ============
+async function smartFetch(url, options = {}, useProxy = true) {
+    if (!useProxy) {
+        try {
+            const r = await fetch(url, options);
+            if (r.ok) return r;
+        } catch (e) {}
+    }
+    
+    // Try direct first
+    try {
+        const response = await fetch(url, options);
+        if (response.ok) return response;
+    } catch (e) {
+        // CORS blocked, try proxies
+    }
+    
+    // Try each proxy
+    for (const proxy of CORS_PROXIES) {
+        try {
+            const proxyUrl = proxy.includes('allorigins') || proxy.includes('codetabs') 
+                ? proxy + encodeURIComponent(url)
+                : proxy + url;
+            const response = await fetch(proxyUrl, options);
+            if (response.ok) return response;
+        } catch (e) {
+            continue;
+        }
+    }
+    throw new Error('All proxies failed');
+}
+
+// ============ FILE EXTRACTION ============
+
+async function extractPDF(file) {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    let fullText = '';
+    for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const textContent = await page.getTextContent();
+        const pageText = textContent.items.map(item => item.str).join(' ');
+        fullText += pageText + '\n\n';
+    }
+    return fullText.trim();
+}
+
+async function extractDOCX(file) {
+    const arrayBuffer = await file.arrayBuffer();
+    const result = await mammoth.extractRawText({ arrayBuffer });
+    return result.value.trim();
+}
+
+async function extractHTML(file) {
+    const text = await file.text();
+    const div = document.createElement('div');
+    div.innerHTML = text;
+    // Remove scripts and styles
+    div.querySelectorAll('script, style').forEach(el => el.remove());
+    return div.textContent.trim().replace(/\s+/g, ' ');
+}
+
+async function extractText(file) {
+    const name = file.name.toLowerCase();
+    
+    try {
+        if (name.endsWith('.pdf')) {
+            log(`📄 Extracting PDF: ${file.name}`);
+            return await extractPDF(file);
+        } else if (name.endsWith('.docx') || name.endsWith('.doc')) {
+            log(`📄 Extracting DOCX: ${file.name}`);
+            return await extractDOCX(file);
+        } else if (name.endsWith('.html') || name.endsWith('.htm')) {
+            log(`📄 Extracting HTML: ${file.name}`);
+            return await extractHTML(file);
+        } else {
+            return await file.text();
+        }
+    } catch (e) {
+        log(`⚠️ Extraction error for ${file.name}: ${e.message}`, 'error');
+        throw e;
+    }
+}
+
+// ============ SEARCH APIS (Real & Free) ============
+
+// Wikipedia API - Always works, CORS-enabled
+async function searchWikipedia(query) {
+    if (!document.getElementById('useWiki').checked) return [];
+    try {
+        const cleanQuery = query.substring(0, 300);
+        const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(cleanQuery)}&format=json&origin=*&srlimit=3&srprop=snippet`;
+        const response = await fetch(url);
+        apiCallCount++;
+        const data = await response.json();
+        const results = [];
+        
+        if (data.query && data.query.search) {
+            for (const r of data.query.search) {
+                // Get full extract for better matching
+                try {
+                    const extractUrl = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=true&explaintext=true&titles=${encodeURIComponent(r.title)}&format=json&origin=*`;
+                    const exResponse = await fetch(extractUrl);
+                    const exData = await exResponse.json();
+                    const pages = exData.query.pages;
+                    const pageId = Object.keys(pages)[0];
+                    const extract = pages[pageId].extract || r.snippet.replace(/<[^>]*>/g, '');
+                    
+                    results.push({
+                        title: r.title,
+                        link: `https://en.wikipedia.org/wiki/${encodeURIComponent(r.title.replace(/ /g, '_'))}`,
+                        snippet: extract.substring(0, 1000),
+                        source: 'Wikipedia'
+                    });
+                } catch (e) {
+                    results.push({
+                        title: r.title,
+                        link: `https://en.wikipedia.org/wiki/${encodeURIComponent(r.title.replace(/ /g, '_'))}`,
+                        snippet: r.snippet.replace(/<[^>]*>/g, ''),
+                        source: 'Wikipedia'
+                    });
+                }
+            }
+        }
+        return results;
+    } catch (e) {
+        log(`⚠️ Wikipedia: ${e.message}`, 'warn');
+        return [];
+    }
+}
+
+// ArXiv API - Free scholarly articles, CORS-enabled
+async function searchArxiv(query) {
+    if (!document.getElementById('useArxiv').checked) return [];
+    try {
+        const cleanQuery = query.substring(0, 200).replace(/[^\w\s]/g, ' ');
+        const url = `https://export.arxiv.org/api/query?search_query=all:${encodeURIComponent(cleanQuery)}&max_results=3`;
+        const response = await smartFetch(url);
+        apiCallCount++;
+        const text = await response.text();
+        const results = [];
+        
+        // Parse XML
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(text, 'text/xml');
+        const entries = xml.getElementsByTagName('entry');
+        
+        for (const entry of entries) {
+            const title = entry.getElementsByTagName('title')[0]?.textContent?.trim() || '';
+            const summary = entry.getElementsByTagName('summary')[0]?.textContent?.trim() || '';
+            const id = entry.getElementsByTagName('id')[0]?.textContent?.trim() || '';
+            
+            if (title && summary) {
+                results.push({
+                    title: title,
+                    link: id,
+                    snippet: summary.substring(0, 1000),
+                    source: 'ArXiv'
+                });
+            }
+        }
+        return results;
+    } catch (e) {
+        log(`⚠️ ArXiv: ${e.message}`, 'warn');
+        return [];
+    }
+}
+
+// CrossRef API - Academic papers, CORS-enabled
+async function searchCrossref(query) {
+    if (!document.getElementById('useCrossref').checked) return [];
+    try {
+        const cleanQuery = query.substring(0, 200);
+        const url = `https://api.crossref.org/works?query=${encodeURIComponent(cleanQuery)}&rows=3`;
+        const response = await fetch(url);
+        apiCallCount++;
+        const data = await response.json();
+        const results = [];
+        
+        if (data.message && data.message.items) {
+            data.message.items.forEach(item => {
+                const title = item.title ? item.title[0] : 'Untitled';
+                const abstract = item.abstract ? item.abstract.replace(/<[^>]*>/g, '') : '';
+                const link = item.URL || (item.DOI ? `https://doi.org/${item.DOI}` : '#');
+                
+                if (abstract) {
+                    results.push({
+                        title: title,
+                        link: link,
+                        snippet: abstract.substring(0, 1000),
+                        source: 'CrossRef'
+                    });
+                }
+            });
+        }
+        return results;
+    } catch (e) {
+        log(`⚠️ CrossRef: ${e.message}`, 'warn');
+        return [];
+    }
+}
+
+// DuckDuckGo via proxy
+async function searchDuckDuckGo(query) {
+    if (!document.getElementById('useDDG').checked) return [];
+    try {
+        const url = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_html=1`;
+        const response = await smartFetch(url);
+        apiCallCount++;
+        const data = await response.json();
+        const results = [];
+        
+        if (data.AbstractText) {
+            results.push({
+                title: data.Heading || 'DuckDuckGo',
+                link: data.AbstractURL || '#',
+                snippet: data.AbstractText,
+                source: 'DuckDuckGo'
+            });
+        }
+        if (data.RelatedTopics) {
+            data.RelatedTopics.slice(0, 2).forEach(t => {
+                if (t.Text) {
+                    results.push({
+                        title: t.Text.split(' - ')[0] || 'Related',
+                        link: t.FirstURL || '#',
+                        snippet: t.Text,
+                        source: 'DuckDuckGo'
+                    });
+                }
+            });
+        }
+        return results;
+    } catch (e) {
+        log(`⚠️ DuckDuckGo: ${e.message}`, 'warn');
+        return [];
+    }
+}
+
+// Searx instances
+async function searchSearx(query) {
+    if (!document.getElementById('useSearx').checked) return [];
+    const instances = [
+        'https://searx.be',
+        'https://search.brave4u.com',
+        'https://priv.au',
+        'https://searx.tiekoetter.com'
+    ];
+    
+    for (const instance of instances) {
+        try {
+            const url = `${instance}/search?q=${encodeURIComponent(query)}&format=json`;
+            const response = await smartFetch(url);
+            apiCallCount++;
+            const data = await response.json();
+            const results = [];
+            
+            if (data.results) {
+                data.results.slice(0, 3).forEach(r => {
+                    results.push({
+                        title: r.title,
+                        link: r.url,
+                        snippet: r.content || '',
+                        source: 'Searx'
+                    });
+                });
+            }
+            if (results.length > 0) return results;
+        } catch (e) {
+            continue;
+        }
+    }
+    return [];
+}
+
+// ============ SIMILARITY ALGORITHMS ============
+
+// Tokenize and normalize
+function tokenize(text) {
+    return (text.toLowerCase().match(/\b[a-z]+\b/g) || []).filter(w => w.length > 2);
+}
+
+// Jaccard similarity
+function jaccardSimilarity(text1, text2) {
+    const set1 = new Set(tokenize(text1));
+    const set2 = new Set(tokenize(text2));
+    if (set1.size === 0 || set2.size === 0) return 0;
+    const intersection = new Set([...set1].filter(w => set2.has(w)));
+    const union = new Set([...set1, ...set2]);
+    return intersection.size / union.size;
+}
+
+// Cosine similarity with TF
+function cosineSimilarity(text1, text2) {
+    const words1 = tokenize(text1);
+    const words2 = tokenize(text2);
+    if (!words1.length || !words2.length) return 0;
+    
+    const freq1 = {}, freq2 = {};
+    words1.forEach(w => freq1[w] = (freq1[w] || 0) + 1);
+    words2.forEach(w => freq2[w] = (freq2[w] || 0) + 1);
+    
+    const allWords = new Set([...words1, ...words2]);
+    let dot = 0, mag1 = 0, mag2 = 0;
+    
+    allWords.forEach(w => {
+        const f1 = freq1[w] || 0;
+        const f2 = freq2[w] || 0;
+        dot += f1 * f2;
+        mag1 += f1 * f1;
+        mag2 += f2 * f2;
+    });
+    
+    return mag1 && mag2 ? dot / (Math.sqrt(mag1) * Math.sqrt(mag2)) : 0;
+}
+
+// N-gram similarity (catches paraphrasing)
+function ngramSimilarity(text1, text2, n = 3) {
+    const getNgrams = (text) => {
+        const words = tokenize(text);
+        const ngrams = new Set();
+        for (let i = 0; i <= words.length - n; i++) {
+            ngrams.add(words.slice(i, i + n).join(' '));
+        }
+        return ngrams;
+    };
+    
+    const ng1 = getNgrams(text1);
+    const ng2 = getNgrams(text2);
+    if (!ng1.size || !ng2.size) return 0;
+    
+    const intersection = new Set([...ng1].filter(w => ng2.has(w)));
+    return intersection.size / Math.min(ng1.size, ng2.size);
+}
+
+// Combined similarity score
+function calculateSimilarity(text1, text2) {
+    const jaccard = jaccardSimilarity(text1, text2);
+    const cosine = cosineSimilarity(text1, text2);
+    const ngram = ngramSimilarity(text1, text2);
+    // Weighted combination - n-gram catches exact phrases
+    return (jaccard * 0.3 + cosine * 0.3 + ngram * 0.4);
+}
+
+// ============ PLAGIARISM DETECTION ============
+
+async function detectPlagiarism(text) {
+    const sentenceLimit = parseInt(document.getElementById('sentenceLimit').value) || 7;
+    const minWords = parseInt(document.getElementById('minWords').value) || 8;
+    const delay = parseInt(document.getElementById('delayMs').value) || 600;
+    const simThreshold = (parseInt(document.getElementById('simThreshold').value) || 25) / 100;
+    
+    // Extract meaningful sentences
+    const sentences = text.split(/[.!?]+/)
+        .map(s => s.trim())
+        .filter(s => {
+            const words = s.split(/\s+/).length;
+            return words >= minWords && words <= 40;
+        });
+    
+    if (sentences.length === 0) {
+        return { score: 0, matches: [], sentencesChecked: 0 };
+    }
+    
+    // Pick distributed sentences with preference for longer, more unique ones
+    const selected = [];
+    const scored = sentences.map(s => ({
+        text: s,
+        score: s.split(/\s+/).length + new Set(s.toLowerCase().split(/\s+/)).size
+    })).sort((a, b) => b.score - a.score);
+    
+    // Take best sentences
+    const pickCount = Math.min(sentenceLimit, scored.length);
+    for (let i = 0; i < pickCount; i++) {
+        selected.push(scored[i].text);
+    }
+    
+    const allMatches = [];
+    let totalMatched = 0;
+    let totalSimilarity = 0;
+    
+    for (let i = 0; i < selected.length; i++) {
+        const sentence = selected[i];
+        log(`🔎 [${i+1}/${selected.length}] Searching: "${sentence.substring(0, 60)}..."`);
+        
+        // Search all enabled sources in parallel
+        const searchPromises = [
+            searchWikipedia(sentence),
+            searchArxiv(sentence),
+            searchCrossref(sentence),
+            searchDuckDuckGo(sentence),
+            searchSearx(sentence)
+        ];
+        
+        const results = await Promise.allSettled(searchPromises);
+        const allResults = [];
+        results.forEach(r => {
+            if (r.status === 'fulfilled') allResults.push(...r.value);
+        });
+        
+        log(`   Found ${allResults.length} potential sources`);
+        
+        let bestMatch = 0;
+        const sentenceMatches = [];
+        
+        for (const result of allResults) {
+            if (!result.snippet || result.snippet.length < 20) continue;
+            
+            // Calculate combined similarity
+            const similarity = calculateSimilarity(sentence, result.snippet);
+            
+            if (similarity > simThreshold) {
+                sentenceMatches.push({
+                    sentence,
+                    title: result.title,
+                    link: result.link,
+                    snippet: result.snippet.substring(0, 500),
+                    source: result.source,
+                    similarity: (similarity * 100).toFixed(1),
+                    similarityRaw: similarity
+                });
+                if (similarity > bestMatch) bestMatch = similarity;
+            }
+        }
+        
+        // Keep top 3 matches per sentence
+        sentenceMatches.sort((a, b) => b.similarityRaw - a.similarityRaw);
+        allMatches.push(...sentenceMatches.slice(0, 3));
+        
+        if (bestMatch > simThreshold) totalMatched++;
+        totalSimilarity += bestMatch;
+        
+        if (i < selected.length - 1) await new Promise(r => setTimeout(r, delay));
+    }
+    
+    // Calculate weighted plagiarism score
+    const matchRatio = totalMatched / selected.length;
+    const avgSimilarity = totalSimilarity / selected.length;
+    const maxSimilarity = allMatches.length > 0 ? Math.max(...allMatches.map(m => m.similarityRaw)) : 0;
+    
+    // Weighted score considers: how many sentences matched, avg similarity, max similarity
+    const score = Math.min(100, 
+        (matchRatio * 50) + 
+        (avgSimilarity * 30) + 
+        (maxSimilarity * 20)
+    );
+    
+    return { 
+        score, 
+        matches: allMatches, 
+        sentencesChecked: selected.length,
+        matchedSentences: totalMatched,
+        avgSimilarity: (avgSimilarity * 100).toFixed(1),
+        maxSimilarity: (maxSimilarity * 100).toFixed(1)
+    };
+}
+
+// ============ AI DETECTION (Advanced GPTZero-style) ============
+
+function detectAI(text) {
+    const words = text.split(/\s+/).filter(w => w.length > 0);
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0);
+    
+    if (words.length < 100) {
+        return { 
+            score: 50, 
+            details: { error: 'Text too short for reliable AI detection (need 100+ words)' }
+        };
+    }
+    
+    const features = {};
+    
+    // ========== 1. BURSTINESS (sentence length variance) ==========
+    const sentLengths = sentences.map(s => s.split(/\s+/).length);
+    const avgSentLen = sentLengths.reduce((a, b) => a + b, 0) / sentLengths.length;
+    const variance = sentLengths.reduce((s, l) => s + Math.pow(l - avgSentLen, 2), 0) / sentLengths.length;
+    const stdDev = Math.sqrt(variance);
+    const burstiness = stdDev / (avgSentLen || 1);
+    features.burstiness = burstiness.toFixed(3);
+    features.avgSentLen = avgSentLen.toFixed(1);
+    features.sentStdDev = stdDev.toFixed(2);
+    // Humans: burstiness > 0.5, AI: burstiness < 0.3
+    const burstinessScore = burstiness < 0.3 ? 85 : burstiness < 0.5 ? 55 : burstiness < 0.7 ? 30 : 15;
+    
+    // ========== 2. PERPLEXITY ESTIMATE (word rarity) ==========
+    const commonWords = new Set(['the','be','to','of','and','a','in','that','have','i','it','for','not','on','with','he','as','you','do','at','this','but','his','by','from','they','we','say','her','she','or','an','will','my','one','all','would','there','their','what','so','up','out','if','about','who','get','which','go','me','when','make','can','like','time','no','just','him','know','take','people','into','year','your','good','some','could','them','see','other','than','then','now','look','only','come','its','over','think','also','back','after','use','two','how','our','work','first','well','way','even','new','want','because','any','these','give','day','most','us']);
+    const wordFreqs = {};
+    words.forEach(w => { wordFreqs[w.toLowerCase()] = (wordFreqs[w.toLowerCase()] || 0) + 1; });
+    const rareWords = Object.keys(wordFreqs).filter(w => !commonWords.has(w) && w.length > 5);
+    const rareRatio = rareWords.length / Object.keys(wordFreqs).length;
+    features.rareWordRatio = (rareRatio * 100).toFixed(1) + '%';
+    // AI uses somewhat uniform vocabulary
+    const perplexityScore = rareRatio > 0.4 && rareRatio < 0.6 ? 70 : 30;
+    
+    // ========== 3. AI-SIGNATURE WORDS ==========
+    const aiWords = {
+        high: ['delve', 'tapestry', 'realm', 'leverage', 'paramount', 'pivotal', 'elucidate', 'intricate', 'multifaceted', 'holistic', 'paradigm', 'endeavor', 'underscore', 'embark', 'navigate the landscape', 'in the realm of', 'in the ever-evolving', 'at the forefront'],
+        medium: ['furthermore', 'moreover', 'comprehensive', 'significantly', 'notably', 'particularly', 'essentially', 'fundamentally', 'specifically', 'utilize', 'foster', 'emphasize', 'critical', 'crucial', 'nuanced'],
+        phrases: ['it is important to note', 'it is worth noting', 'it should be noted', 'in conclusion', 'on the other hand', 'in summary', 'in essence', 'as a result', 'to put it simply', 'in other words', 'dive into', 'dive deeper', 'navigate through']
+    };
+    
+    const lowerText = text.toLowerCase();
+    let highAI = 0, medAI = 0, phraseAI = 0;
+    
+    aiWords.high.forEach(w => {
+        const matches = lowerText.match(new RegExp('\\b' + w.replace(/\s+/g, '\\s+') + '\\b', 'g'));
+        if (matches) highAI += matches.length;
+    });
+    aiWords.medium.forEach(w => {
+        const matches = lowerText.match(new RegExp('\\b' + w + '\\b', 'g'));
+        if (matches) medAI += matches.length;
+    });
+    aiWords.phrases.forEach(w => {
+        if (lowerText.includes(w)) phraseAI++;
+    });
+    
+    features.highAIWords = highAI;
+    features.mediumAIWords = medAI;
+    features.aiPhrases = phraseAI;
+    const totalAIIndicators = highAI * 3 + medAI + phraseAI * 2;
+    const aiWordScore = Math.min(100, (totalAIIndicators / words.length) * 3000);
+    
+    // ========== 4. PUNCTUATION FINGERPRINT ==========
+    const emDashes = (text.match(/—|–/g) || []).length;
+    const semicolons = (text.match(/;/g) || []).length;
+    const colons = (text.match(/:/g) || []).length;
+    const oxfordCommas = (text.match(/,\s+(and|or)\s+/gi) || []).length;
+    
+    features.emDashes = emDashes;
+    features.semicolons = semicolons;
+    features.oxfordCommas = oxfordCommas;
+    
+    const punctRatio = (emDashes * 3 + semicolons * 2 + oxfordCommas) / sentences.length;
+    const punctScore = Math.min(100, punctRatio * 60);
+    
+    // ========== 5. SENTENCE STARTER PATTERNS ==========
+    const aiStarters = ['However', 'Moreover', 'Furthermore', 'Additionally', 'In addition', 'Nevertheless', 'Consequently', 'Therefore', 'Thus', 'Indeed', 'Notably', 'Importantly', 'Specifically', 'Essentially'];
+    let starterCount = 0;
+    sentences.forEach(s => {
+        const trimmed = s.trim();
+        aiStarters.forEach(starter => {
+            if (trimmed.startsWith(starter + ',') || trimmed.startsWith(starter + ' ')) starterCount++;
+        });
+    });
+    features.aiStarters = starterCount;
+    const starterScore = Math.min(100, (starterCount / sentences.length) * 400);
+    
+    // ========== 6. CONTRACTION ANALYSIS (Humans use them, AI doesn't) ==========
+    const contractions = (text.match(/\b\w+'(s|t|re|ve|ll|d|m)\b/g) || []).length;
+    const contractionsPerSentence = contractions / sentences.length;
+    features.contractions = contractions;
+    features.contractionsPerSent = contractionsPerSentence.toFixed(2);
+    const contractionScore = contractionsPerSentence < 0.1 ? 75 : contractionsPerSentence < 0.3 ? 40 : 15;
+    
+    // ========== 7. BIGRAM/TRIGRAM REPETITION ==========
+    const bigrams = {}, trigrams = {};
+    const lowerWords = words.map(w => w.toLowerCase().replace(/[^a-z]/g, ''));
+    
+    for (let i = 0; i < lowerWords.length - 1; i++) {
+        if (lowerWords[i] && lowerWords[i+1]) {
+            const bg = lowerWords[i] + ' ' + lowerWords[i+1];
+            bigrams[bg] = (bigrams[bg] || 0) + 1;
+        }
+    }
+    for (let i = 0; i < lowerWords.length - 2; i++) {
+        if (lowerWords[i] && lowerWords[i+1] && lowerWords[i+2]) {
+            const tg = lowerWords[i] + ' ' + lowerWords[i+1] + ' ' + lowerWords[i+2];
+            trigrams[tg] = (trigrams[tg] || 0) + 1;
+        }
+    }
+    
+    const repeatedBigrams = Object.values(bigrams).filter(c => c > 2).length;
+    const repeatedTrigrams = Object.values(trigrams).filter(c => c > 1).length;
+    features.repeatedBigrams = repeatedBigrams;
+    features.repeatedTrigrams = repeatedTrigrams;
+    const repetitionScore = Math.min(100, (repeatedBigrams * 2 + repeatedTrigrams * 5));
+    
+    // ========== 8. AVERAGE WORD LENGTH ==========
+    const avgWordLen = words.reduce((s, w) => s + w.length, 0) / words.length;
+    features.avgWordLen = avgWordLen.toFixed(2);
+    const wordLenScore = avgWordLen > 5.2 ? 65 : avgWordLen > 4.8 ? 45 : 25;
+    
+    // ========== 9. PARAGRAPH UNIFORMITY ==========
+    const paraLengths = paragraphs.map(p => p.split(/\s+/).length);
+    const avgParaLen = paraLengths.reduce((a, b) => a + b, 0) / (paraLengths.length || 1);
+    const paraVariance = paraLengths.reduce((s, l) => s + Math.pow(l - avgParaLen, 2), 0) / (paraLengths.length || 1);
+    const paraStdDev = Math.sqrt(paraVariance);
+    const paraUniformity = paraStdDev / (avgParaLen || 1);
+    features.paraCount = paragraphs.length;
+    features.paraUniformity = paraUniformity.toFixed(3);
+    const paraScore = paraUniformity < 0.3 ? 70 : paraUniformity < 0.5 ? 45 : 20;
+    
+    // ========== 10. LEXICAL DIVERSITY (Type-Token Ratio) ==========
+    const uniqueWords = new Set(lowerWords.filter(w => w));
+    const ttr = uniqueWords.size / lowerWords.length;
+    features.lexicalDiversity = (ttr * 100).toFixed(1) + '%';
+    // AI often has TTR in 0.45-0.6 range
+    const ttrScore = (ttr > 0.45 && ttr < 0.6) ? 70 : 30;
+    
+    // ========== 11. ENTROPY (Shannon) ==========
+    const totalWords = lowerWords.length;
+    let entropy = 0;
+    Object.values(wordFreqs).forEach(count => {
+        const p = count / totalWords;
+        if (p > 0) entropy -= p * Math.log2(p);
+    });
+    features.entropy = entropy.toFixed(2);
+    // AI text has slightly lower entropy
+    const entropyScore = entropy < 8 ? 70 : entropy < 9 ? 45 : 25;
+    
+    // ========== 12. SENTENCE STRUCTURE COMPLEXITY ==========
+    let complexSentences = 0;
+    sentences.forEach(s => {
+        const commas = (s.match(/,/g) || []).length;
+        if (commas >= 2) complexSentences++;
+    });
+    const complexRatio = complexSentences / sentences.length;
+    features.complexSentenceRatio = (complexRatio * 100).toFixed(1) + '%';
+    // AI tends to write many complex sentences
+    const complexScore = complexRatio > 0.4 ? 60 : 30;
+    
+    // ========== WEIGHTED FINAL SCORE ==========
+    const finalScore = (
+        burstinessScore * 0.20 +      // Most important
+        aiWordScore * 0.15 +
+        starterScore * 0.10 +
+        contractionScore * 0.10 +
+        punctScore * 0.08 +
+        repetitionScore * 0.08 +
+        paraScore * 0.07 +
+        perplexityScore * 0.05 +
+        ttrScore * 0.05 +
+        entropyScore * 0.05 +
+        wordLenScore * 0.04 +
+        complexScore * 0.03
+    );
+    
+    // Apply some smoothing and bounds
+    const smoothed = Math.min(97, Math.max(3, finalScore));
+    
+    return {
+        score: smoothed,
+        details: features,
+        subscores: {
+            burstiness: burstinessScore.toFixed(1),
+            aiWords: aiWordScore.toFixed(1),
+            starters: starterScore.toFixed(1),
+            contractions: contractionScore.toFixed(1),
+            punctuation: punctScore.toFixed(1),
+            repetition: repetitionScore.toFixed(1),
+            paragraphs: paraScore.toFixed(1),
+            perplexity: perplexityScore.toFixed(1),
+            lexicalDiversity: ttrScore.toFixed(1),
+            entropy: entropyScore.toFixed(1)
+        }
+    };
+}
+
+// ============ MAIN ANALYSIS ============
+
+async function analyzeFile(file) {
+    const text = file.content;
+    if (!text || text.length < 100) {
+        throw new Error('Text too short (minimum 100 characters required)');
+    }
+    
+    log(`📄 Analyzing: ${file.name} (${text.length} chars, ~${text.split(/\s+/).length} words)`, 'info');
+    
+    // AI Detection (instant)
+    const aiResult = detectAI(text);
+    log(`🤖 AI Score: ${aiResult.score.toFixed(1)}%`, 'success');
+    
+    // Plagiarism Detection (uses APIs)
+    const plagResult = await detectPlagiarism(text);
+    log(`🔍 Plagiarism: ${plagResult.score.toFixed(1)}% | ${plagResult.matches.length} matches from ${plagResult.sentencesChecked} sentences`, 'success');
+    
+    return {
+        plagiarismScore: plagResult.score,
+        aiScore: aiResult.score,
+        aiDetails: aiResult.details,
+        aiSubscores: aiResult.subscores,
+        plagMatches: plagResult.matches,
+        sentencesChecked: plagResult.sentencesChecked,
+        matchedSentences: plagResult.matchedSentences,
+        avgSimilarity: plagResult.avgSimilarity,
+        maxSimilarity: plagResult.maxSimilarity,
+        wordCount: text.split(/\s+/).length,
+        charCount: text.length
+    };
+}
+
+async function scanAllFiles() {
+    document.getElementById('scanBtn').disabled = true;
+    const pending = files.filter(f => f.status === 'pending' || f.status === 'error');
+    
+    log(`🚀 Starting scan of ${pending.length} files...`, 'success');
+    const startTime = Date.now();
+    
+    for (const file of pending) {
+        file.status = 'processing';
+        updateUI();
+        
+        try {
+            const result = await analyzeFile(file);
+            file.plagiarismScore = result.plagiarismScore;
+            file.aiScore = result.aiScore;
+            file.report = result;
+            file.status = 'complete';
+            log(`✅ ${file.name} done`, 'success');
+        } catch (e) {
+            file.status = 'error';
+            file.error = e.message;
+            log(`❌ ${file.name}: ${e.message}`, 'error');
+        }
+        updateUI();
+    }
+    
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+    document.getElementById('scanBtn').disabled = false;
+    log(`🏁 Scan complete in ${elapsed}s! ${apiCallCount} API calls made`, 'success');
+}
+
+// ============ FILE HANDLING ============
+
+const uploadArea = document.getElementById('uploadArea');
+const fileInput = document.getElementById('fileInput');
+
+uploadArea.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'BUTTON') fileInput.click();
+});
+uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove('dragover');
+    handleFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+async function handleFiles(fileList) {
+    log(`📁 Loading ${fileList.length} file(s)...`);
+    
+    for (const file of fileList) {
+        const fileData = {
+            id: fileIdCounter++,
+            name: file.name,
+            size: file.size,
+            content: '',
+            plagiarismScore: null,
+            aiScore: null,
+            status: 'extracting',
+            report: null
+        };
+        files.push(fileData);
+        updateUI();
+        
+        try {
+            const text = await extractText(file);
+            fileData.content = text;
+            fileData.status = 'pending';
+            log(`✅ Loaded: ${file.name} (${text.length} chars)`, 'success');
+        } catch (e) {
+            fileData.status = 'error';
+            fileData.error = `Extraction failed: ${e.message}`;
+            log(`❌ Failed: ${file.name} - ${e.message}`, 'error');
+        }
+        updateUI();
+    }
+}
+
+// ============ UI UPDATES ============
+
+function updateUI() {
+    document.getElementById('statsCard').style.display = files.length ? 'block' : 'none';
+    document.getElementById('filesCard').style.display = files.length ? 'block' : 'none';
+    document.getElementById('scanBtn').disabled = !files.some(f => f.status === 'pending' || f.status === 'error');
+    
+    const scanned = files.filter(f => f.status === 'complete');
+    document.getElementById('totalFiles').textContent = files.length;
+    document.getElementById('scannedFiles').textContent = scanned.length;
+    document.getElementById('apiCalls').textContent = apiCallCount;
+    
+    const totalWords = files.reduce((s, f) => s + (f.content ? f.content.split(/\s+/).length : 0), 0);
+    document.getElementById('totalWords').textContent = totalWords.toLocaleString();
+    
+    if (scanned.length) {
+        const avgPlag = scanned.reduce((s, f) => s + (f.plagiarismScore || 0), 0) / scanned.length;
+        const avgAI = scanned.reduce((s, f) => s + (f.aiScore || 0), 0) / scanned.length;
+        document.getElementById('avgPlagiarism').textContent = avgPlag.toFixed(1) + '%';
+        document.getElementById('avgAI').textContent = avgAI.toFixed(1) + '%';
+        document.getElementById('exportBtn').disabled = false;
+        document.getElementById('exportJsonBtn').disabled = false;
+        document.getElementById('exportZipBtn').disabled = false;
+    }
+    
+    const progress = files.length ? (scanned.length / files.length) * 100 : 0;
+    document.getElementById('overallProgress').style.width = progress + '%';
+    
+    renderFiles();
+}
+
+function renderFiles() {
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    const filterStatus = document.getElementById('filterStatus').value;
+    const sortBy = document.getElementById('sortBy').value;
+    
+    let filtered = files.filter(f => {
+        const matchSearch = f.name.toLowerCase().includes(search);
+        const matchStatus = filterStatus === 'all' || f.status === filterStatus;
+        return matchSearch && matchStatus;
+    });
+    
+    filtered.sort((a, b) => {
+        if (sortBy === 'name') return a.name.localeCompare(b.name);
+        if (sortBy === 'plagiarism') return (b.plagiarismScore || 0) - (a.plagiarismScore || 0);
+        if (sortBy === 'ai') return (b.aiScore || 0) - (a.aiScore || 0);
+        if (sortBy === 'size') return b.size - a.size;
+    });
+    
+    document.getElementById('fileList').innerHTML = filtered.map(f => `
+        <div class="file-item">
+            <div class="file-info">
+                <div class="file-name">📄 ${escapeHtml(f.name)}</div>
+                <div class="file-meta">
+                    ${formatSize(f.size)} • 
+                    ${f.content ? `${f.content.split(/\s+/).length} words • ` : ''}
+                    <span class="status status-${f.status}">${f.status.toUpperCase()}</span>
+                    ${f.error ? ` • <span style="color:#e74c3c;">${escapeHtml(f.error)}</span>` : ''}
+                </div>
+            </div>
+            <div class="scores">
+                <div class="score ${getScoreClass(f.plagiarismScore)}">
+                    <span class="score-label">Plagiarism</span>
+                    ${f.plagiarismScore !== null ? f.plagiarismScore.toFixed(1) + '%' : '—'}
+                </div>
+                <div class="score ${getScoreClass(f.aiScore)}">
+                    <span class="score-label">AI Content</span>
+                    ${f.aiScore !== null ? f.aiScore.toFixed(1) + '%' : '—'}
+                </div>
+                ${f.status === 'complete' ? `<button class="btn btn-small" onclick="viewReport(${f.id})">📋 Report</button>` : ''}
+            </div>
+        </div>
+    `).join('');
+}
+
+function getScoreClass(score) {
+    if (score === null) return 'score-pending';
+    if (score < 25) return 'score-low';
+    if (score < 60) return 'score-medium';
+    return 'score-high';
+}
+
+function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB';
+    return (bytes/1048576).toFixed(2) + ' MB';
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// ============ REPORTING ============
+
+function viewReport(id) {
+    const file = files.find(f => f.id === id);
+    if (!file || !file.report) return;
+    const r = file.report;
+    
+    let matchesHtml = '';
+    if (r.plagMatches && r.plagMatches.length > 0) {
+        // Group matches by source
+        const bySource = {};
+        r.plagMatches.forEach(m => {
+            if (!bySource[m.source]) bySource[m.source] = [];
+            bySource[m.source].push(m);
+        });
+        
+        matchesHtml = `
+            <div class="report-section">
+                <h4>🔗 Plagiarism Matches (${r.plagMatches.length} sources found)</h4>
+                <p style="margin-bottom:10px;">
+                    <span class="tag tag-warning">Matched: ${r.matchedSentences}/${r.sentencesChecked} sentences</span>
+                    <span class="tag tag-warning">Avg similarity: ${r.avgSimilarity}%</span>
+                    <span class="tag tag-danger">Max similarity: ${r.maxSimilarity}%</span>
+                </p>
+                ${Object.entries(bySource).map(([source, matches]) => `
+                    <h5 style="color:#667eea;margin:15px 0 8px;">📚 ${source} (${matches.length})</h5>
+                    ${matches.map(m => `
+                        <div class="match-item">
+                            <a href="${m.link}" target="_blank">${escapeHtml(m.title)}</a>
+                            <div style="font-size:0.85em;color:#888;margin:5px 0;">
+                                <span class="tag ${m.similarityRaw > 0.5 ? 'tag-danger' : m.similarityRaw > 0.3 ? 'tag-warning' : 'tag-success'}">
+                                    Similarity: ${m.similarity}%
+                                </span>
+                            </div>
+                            <div class="match-snippet">
+                                <strong>Your text:</strong><br>
+                                "${escapeHtml(m.sentence.substring(0, 200))}${m.sentence.length > 200 ? '...' : ''}"
+                            </div>
+                            <div class="match-snippet" style="border-left:3px solid #11998e;">
+                                <strong>Source text:</strong><br>
+                                "${escapeHtml(m.snippet.substring(0, 300))}${m.snippet.length > 300 ? '...' : ''}"
+                            </div>
+                        </div>
+                    `).join('')}
+                `).join('')}
+            </div>
+        `;
+    } else {
+        matchesHtml = `<div class="report-section">
+            <h4>✅ No Significant Plagiarism Detected</h4>
+            <p>No matching content found in web searches across Wikipedia, ArXiv, CrossRef, DuckDuckGo, and Searx.</p>
+            <p style="color:#666;margin-top:8px;font-size:0.9em;">Checked ${r.sentencesChecked} sentences.</p>
+        </div>`;
+    }
+    
+    const verdictPlag = file.plagiarismScore < 25 ? 'low' : file.plagiarismScore < 60 ? 'medium' : 'high';
+    const verdictAI = file.aiScore < 25 ? 'low' : file.aiScore < 60 ? 'medium' : 'high';
+    
+    const aiSubscoresHtml = r.aiSubscores ? Object.entries(r.aiSubscores).map(([k, v]) => `
+        <div class="detail-item">
+            <div class="label">${k.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</div>
+            <div class="value">${v}%</div>
+        </div>
+    `).join('') : '';
+    
+    const aiDetailsHtml = r.aiDetails ? Object.entries(r.aiDetails).map(([k, v]) => `
+        <div class="detail-item">
+            <div class="label">${k.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</div>
+            <div class="value">${v}</div>
+        </div>
+    `).join('') : '';
+    
+    document.getElementById('reportContent').innerHTML = `
+        <h2>📋 Detection Report</h2>
+        <h3 style="color:#667eea;margin-top:10px;word-break:break-all;">${escapeHtml(file.name)}</h3>
+        
+        <div class="stats" style="margin-top:20px;">
+            <div class="stat-box"><h3>${file.plagiarismScore.toFixed(1)}%</h3><p>Plagiarism</p></div>
+            <div class="stat-box"><h3>${file.aiScore.toFixed(1)}%</h3><p>AI Generated</p></div>
+        </div>
+        
+        <div class="verdict-box verdict-${verdictPlag}">
+            📝 Plagiarism: ${verdictPlag === 'low' ? '✅ Original Content' : verdictPlag === 'medium' ? '⚠️ Partial Matches Found' : '🚨 High Plagiarism Detected'}
+        </div>
+        
+        <div class="verdict-box verdict-${verdictAI}">
+            🤖 AI Detection: ${verdictAI === 'low' ? '✅ Likely Human-Written' : verdictAI === 'medium' ? '⚠️ Mixed Signals' : '🤖 Likely AI-Generated'}
+        </div>
+        
+        <div class="report-section">
+            <h4>📊 Document Information</h4>
+            <div class="detail-grid">
+                <div class="detail-item"><div class="label">Word Count</div><div class="value">${r.wordCount.toLocaleString()}</div></div>
+                <div class="detail-item"><div class="label">Character Count</div><div class="value">${r.charCount.toLocaleString()}</div></div>
+                <div class="detail-item"><div class="label">Sentences Checked</div><div class="value">${r.sentencesChecked}</div></div>
+                <div class="detail-item"><div class="label">Matched Sentences</div><div class="value">${r.matchedSentences}</div></div>
+            </div>
+        </div>
+        
+        <div class="report-section">
+            <h4>🎯 AI Detection Sub-Scores (12 Features)</h4>
+            <div class="detail-grid">${aiSubscoresHtml}</div>
+        </div>
+        
+        <div class="report-section">
+            <h4>🔬 Detailed AI Analysis Metrics</h4>
+            <div class="detail-grid">${aiDetailsHtml}</div>
+        </div>
+        
+        ${matchesHtml}
+        
+        <button class="btn" onclick="downloadReport(${id})" style="margin-top:15px;">📥 Download Report (TXT)</button>
+        <button class="btn" onclick="downloadReportHTML(${id})" style="margin-top:15px;">📄 Download Report (HTML)</button>
+    `;
+    
+    document.getElementById('reportModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('reportModal').classList.remove('show');
+}
+
+function generateReportText(file) {
+    const r = file.report;
+    let text = `╔════════════════════════════════════════════════════╗
+║       PLAGIARISM & AI DETECTION REPORT              ║
+╚════════════════════════════════════════════════════╝
+
+File: ${file.name}
+Date: ${new Date().toLocaleString()}
+Generated by: PlagAI Ultimate
+
+═══ SCORES ═══
+Plagiarism Score: ${file.plagiarismScore.toFixed(1)}%
+AI Content Score: ${file.aiScore.toFixed(1)}%
+
+═══ VERDICT ═══
+Plagiarism: ${file.plagiarismScore < 25 ? '✅ Low Risk - Original Content' : file.plagiarismScore < 60 ? '⚠️ Medium Risk - Partial Matches' : '🚨 High Risk - Significant Plagiarism'}
+AI Detection: ${file.aiScore < 25 ? '✅ Likely Human-Written' : file.aiScore < 60 ? '⚠️ Mixed Signals' : '🤖 Likely AI-Generated'}
+
+═══ DOCUMENT INFO ═══
+Word Count: ${r.wordCount.toLocaleString()}
+Character Count: ${r.charCount.toLocaleString()}
+Sentences Analyzed: ${r.sentencesChecked}
+Sentences with Matches: ${r.matchedSentences}
+Average Similarity: ${r.avgSimilarity}%
+Maximum Similarity: ${r.maxSimilarity}%
+
+═══ AI DETECTION SUB-SCORES ═══
+${r.aiSubscores ? Object.entries(r.aiSubscores).map(([k, v]) => `${k.padEnd(25)}: ${v}%`).join('\n') : ''}
+
+═══ AI DETECTION DETAILS ═══
+${r.aiDetails ? Object.entries(r.aiDetails).map(([k, v]) => `${k.padEnd(25)}: ${v}`).join('\n') : ''}
+`;
+    
+    if (r.plagMatches && r.plagMatches.length > 0) {
+        text += `\n═══ PLAGIARISM MATCHES (${r.plagMatches.length}) ═══\n`;
+        r.plagMatches.forEach((m, i) => {
+            text += `\n[${i+1}] ${m.title} (${m.source})\n`;
+            text += `    Similarity: ${m.similarity}%\n`;
+            text += `    URL: ${m.link}\n`;
+            text += `    Your sentence: "${m.sentence}"\n`;
+            text += `    Source text: "${m.snippet.substring(0, 200)}..."\n`;
+        });
+    } else {
+        text += `\n═══ PLAGIARISM MATCHES ═══\nNo significant matches found.\n`;
+    }
+    
+    return text;
+}
+
+function downloadReport(id) {
+    const file = files.find(f => f.id === id);
+    const text = generateReportText(file);
+    const blob = new Blob([text], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `report_${file.name.replace(/\.[^.]+$/, '')}.txt`;
+    a.click();
+}
+
+function downloadReportHTML(id) {
+    const file = files.find(f => f.id === id);
+    const r = file.report;
+    const html = `<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Report: ${escapeHtml(file.name)}</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:900px;margin:20px auto;padding:20px;line-height:1.6;}
+h1{color:#667eea;border-bottom:3px solid #667eea;padding-bottom:10px;}
+h2{color:#764ba2;margin-top:30px;}
+.score{display:inline-block;padding:15px 30px;border-radius:10px;color:white;font-size:1.5em;font-weight:bold;margin:10px;}
+.low{background:#11998e;}.medium{background:#f5a623;}.high{background:#eb3349;}
+table{width:100%;border-collapse:collapse;margin:10px 0;}
+td,th{padding:8px;border:1px solid #ddd;text-align:left;}
+th{background:#f8f9ff;}
+.match{background:#fff5f5;padding:15px;border-left:4px solid #eb3349;margin:10px 0;border-radius:5px;}
+.match a{color:#667eea;}
+</style></head><body>
+<h1>📋 Plagiarism & AI Detection Report</h1>
+<p><strong>File:</strong> ${escapeHtml(file.name)}<br>
+<strong>Date:</strong> ${new Date().toLocaleString()}</p>
+
+<h2>Overall Scores</h2>
+<div class="score ${file.plagiarismScore < 25 ? 'low' : file.plagiarismScore < 60 ? 'medium' : 'high'}">Plagiarism: ${file.plagiarismScore.toFixed(1)}%</div>
+<div class="score ${file.aiScore < 25 ? 'low' : file.aiScore < 60 ? 'medium' : 'high'}">AI Generated: ${file.aiScore.toFixed(1)}%</div>
+
+<h2>Document Info</h2>
+<table>
+<tr><th>Word Count</th><td>${r.wordCount}</td></tr>
+<tr><th>Character Count</th><td>${r.charCount}</td></tr>
+<tr><th>Sentences Checked</th><td>${r.sentencesChecked}</td></tr>
+<tr><th>Matched Sentences</th><td>${r.matchedSentences}</td></tr>
+</table>
+
+<h2>AI Detection Details</h2>
+<table>
+${r.aiDetails ? Object.entries(r.aiDetails).map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('') : ''}
+</table>
+
+<h2>Plagiarism Matches (${r.plagMatches.length})</h2>
+${r.plagMatches.map(m => `
+<div class="match">
+<strong><a href="${m.link}" target="_blank">${escapeHtml(m.title)}</a></strong> (${m.source}) - ${m.similarity}% similar<br>
+<em>Your text:</em> "${escapeHtml(m.sentence)}"<br>
+<em>Source:</em> "${escapeHtml(m.snippet.substring(0, 300))}"
+</div>`).join('')}
+</body></html>`;
+    
+    const blob = new Blob([html], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `report_${file.name.replace(/\.[^.]+$/, '')}.html`;
+    a.click();
+}
+
+function exportReports() {
+    const completed = files.filter(f => f.status === 'complete');
+    const csv = [
+        ['Filename', 'Plagiarism %', 'AI %', 'Word Count', 'Char Count', 'Matches Found', 'Sentences Checked', 'Matched Sentences', 'Max Similarity', 'Plag Risk', 'AI Risk'].join(','),
+        ...completed.map(f => [
+            `"${f.name.replace(/"/g, '""')}"`,
+            f.plagiarismScore.toFixed(2),
+            f.aiScore.toFixed(2),
+            f.report.wordCount,
+            f.report.charCount,
+            f.report.plagMatches.length,
+            f.report.sentencesChecked,
+            f.report.matchedSentences,
+            f.report.maxSimilarity,
+            f.plagiarismScore < 25 ? 'Low' : f.plagiarismScore < 60 ? 'Medium' : 'High',
+            f.aiScore < 25 ? 'Low' : f.aiScore < 60 ? 'Medium' : 'High'
+        ].join(','))
+    ].join('\n');
+    
+    const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `plagai_summary_${Date.now()}.csv`;
+    a.click();
+    log('📥 Exported CSV summary', 'success');
+}
+
+function exportJSON() {
+    const data = files.filter(f => f.status === 'complete').map(f => ({
+        filename: f.name,
+        plagiarism: f.plagiarismScore,
+        ai: f.aiScore,
+        report: f.report
+    }));
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `plagai_data_${Date.now()}.json`;
+    a.click();
+    log('📄 Exported JSON', 'success');
+}
+
+async function exportAllReports() {
+    const completed = files.filter(f => f.status === 'complete');
+    if (!completed.length) return;
+    
+    log('📦 Creating ZIP with all reports...');
+    const zip = new JSZip();
+    const folder = zip.folder('plagiarism_reports');
+    
+    // Add summary CSV
+    const csv = [
+        ['Filename', 'Plagiarism %', 'AI %', 'Word Count', 'Matches'].join(','),
+        ...completed.map(f => [
+            `"${f.name}"`,
+            f.plagiarismScore.toFixed(2),
+            f.aiScore.toFixed(2),
+            f.report.wordCount,
+            f.report.plagMatches.length
+        ].join(','))
+    ].join('\n');
+    folder.file('_SUMMARY.csv', csv);
+    
+    // Add individual reports
+    completed.forEach(f => {
+        const safeName = f.name.replace(/[^a-z0-9]/gi, '_');
+        folder.file(`${safeName}_report.txt`, generateReportText(f));
+    });
+    
+    const content = await zip.generateAsync({ type: 'blob' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(content);
+    a.download = `plagai_all_reports_${Date.now()}.zip`;
+    a.click();
+    log(`📦 Exported ${completed.length} reports as ZIP`, 'success');
+}
+
+function clearAll() {
+    if (confirm('Clear all files and results?')) {
+        files = [];
+        apiCallCount = 0;
+        updateUI();
+        log('🗑 All cleared', 'warn');
+    }
+}
+
+document.getElementById('reportModal').addEventListener('click', (e) => {
+    if (e.target.id === 'reportModal') closeModal();
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+});
+
+log('🚀 PlagAI Ultimate initialized - Ready to scan!', 'success');
+log('📌 Tip: Upload PDF, DOCX, or text files. Results use real web searches.', 'info');
+</script>
+
+<!-- CODESHIELD_ATTR_DISPATCHER -->
+<script>(function(){var m=JSON.parse(decodeURIComponent(escape(atob("W3siaWQiOiJfY3NfM3J3aHJpXzAiLCJhdHRyIjoib25jbGljayIsInZhbHVlIjoiZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZpbGVJbnB1dCcpLmNsaWNrKCkifSx7ImlkIjoiX2NzXzNyd2hyaV8xIiwiYXR0ciI6Im9uY2xpY2siLCJ2YWx1ZSI6InNjYW5BbGxGaWxlcygpIn0seyJpZCI6Il9jc18zcndocmlfMiIsImF0dHIiOiJvbmNsaWNrIiwidmFsdWUiOiJleHBvcnRSZXBvcnRzKCkifSx7ImlkIjoiX2NzXzNyd2hyaV8zIiwiYXR0ciI6Im9uY2xpY2siLCJ2YWx1ZSI6ImV4cG9ydEpTT04oKSJ9LHsiaWQiOiJfY3NfM3J3aHJpXzQiLCJhdHRyIjoib25jbGljayIsInZhbHVlIjoiZXhwb3J0QWxsUmVwb3J0cygpIn0seyJpZCI6Il9jc18zcndocmlfNSIsImF0dHIiOiJvbmNsaWNrIiwidmFsdWUiOiJjbGVhckFsbCgpIn0seyJpZCI6Il9jc18zcndocmlfNiIsImF0dHIiOiJvbmNsaWNrIiwidmFsdWUiOiJ0b2dnbGVMb2coKSJ9LHsiaWQiOiJfY3NfM3J3aHJpXzciLCJhdHRyIjoib25jbGljayIsInZhbHVlIjoiY2xvc2VNb2RhbCgpIn1d"))));var map={};m.forEach(function(e){map[e.id]=e;});document.addEventListener("click",function(e){var t=e.target.closest("[data-cs-nav]");if(t){e.preventDefault();var d=map[t.getAttribute("data-cs-nav")];if(d){if(t.target==="_blank")window.open(d.value,"_blank");else window.location.href=d.value;}}var a=e.target.closest("[data-cs-act]");if(a){var d=map[a.getAttribute("data-cs-act")];if(d)try{new Function(d.value).call(a);}catch(x){}}},true);document.addEventListener("submit",function(e){var f=e.target.closest("[data-cs-form]");if(f){e.preventDefault();var d=map[f.getAttribute("data-cs-form")];if(d){f.setAttribute("action",d.value);HTMLFormElement.prototype.submit.call(f);}}},true);})();</script>
+<!-- CODESHIELD_ATTR_DISPATCHER_END -->
+
+<!-- CODESHIELD_PROTECTION_START -->
+<script _cs_guard_dxh9p6 data-cs-protected>(function(){document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);document.addEventListener('keydown',function(e){if(e.key==='F12'){e.preventDefault();e.stopPropagation();return false;}if(e.ctrlKey&&e.shiftKey&&'IJCijc'.indexOf(e.key)!==-1){e.preventDefault();e.stopPropagation();return false;}if(e.ctrlKey&&'uUsS'.indexOf(e.key)!==-1){e.preventDefault();e.stopPropagation();return false;}},true);(function(){var o=document.createElement('div');o.id='__cs_dtOverlay';o.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.97);z-index:2147483647;display:none;align-items:center;justify-content:center;font-family:system-ui,sans-serif;';o.innerHTML='<div style="text-align:center;color:#fff;padding:40px;"><div style="font-size:60px;margin-bottom:16px;">\uD83D\uDEE1\uFE0F</div><h2 style="font-size:22px;margin-bottom:8px;">Source Protected</h2><p style="color:#999;font-size:14px;">Developer tools are not permitted.</p></div>';document.body.appendChild(o);var t=160;function c(){var w=window.outerWidth-window.innerWidth>t;var h=window.outerHeight-window.innerHeight>t;o.style.display=(w||h)?'flex':'none';}setInterval(c,800);window.addEventListener('resize',c);})();(function(){var n=function(){};try{['log','warn','error','info','debug','dir','table','trace','group','groupEnd','time','timeEnd','assert','count'].forEach(function(m){if(console[m])console[m]=n;});console.clear();}catch(x){}})();(function d(){try{(function(){return false;})['constructor']('debugger')();}catch(x){}setTimeout(d,2000);})();document.addEventListener('selectstart',function(e){e.preventDefault();},true);(function(){var s=document.body.style;s.userSelect='none';s.webkitUserSelect='none';s.msUserSelect='none';s.MozUserSelect='none';})();document.addEventListener('copy',function(e){e.preventDefault();},true);document.addEventListener('cut',function(e){e.preventDefault();},true);document.addEventListener('keydown',function(e){if(e.ctrlKey&&'aAcCxXsSpP'.indexOf(e.key)!==-1){e.preventDefault();e.stopPropagation();return false;}},true);document.addEventListener('dragstart',function(e){e.preventDefault();},true);document.addEventListener('keyup',function(e){if(e.key==='PrintScreen'){document.body.style.filter='blur(12px)';document.body.style.transition='filter 0.3s';setTimeout(function(){document.body.style.filter='none';},2500);}},true);(function(){function isBot(){if(navigator.webdriver===true)return true;if(window.__nightmare)return true;if(window._phantom||window.callPhantom||window.__phantomas)return true;if(navigator.languages&&navigator.languages.length===0)return true;if(/HeadlessChrome/i.test(navigator.userAgent))return true;if(navigator.plugins&&navigator.plugins.length===0&&!/Mobile|Android/i.test(navigator.userAgent))return true;if(/Puppeteer/i.test(navigator.userAgent))return true;try{if(navigator.connection&&navigator.connection.rtt===0)return true;}catch(x){}return false;}if(isBot()){var o=document.createElement('div');o.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:#1a1a2e;z-index:2147483647;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;';o.innerHTML='<div style="text-align:center;color:#fff;padding:40px;"><div style="font-size:60px;margin-bottom:16px;">\uD83E\uDD16</div><h2 style="font-size:22px;margin-bottom:8px;">Automated Access Blocked</h2><p style="color:#999;font-size:14px;">This page cannot be viewed by bots.</p></div>';document.body.innerHTML='';document.body.appendChild(o);}})();})();(function(){var s=document.currentScript||document.querySelector('script[_cs_guard_dxh9p6]');if(!s)return;var p=s.parentNode;var ob=new MutationObserver(function(ms){ms.forEach(function(m){if(m.type==='childList'){m.removedNodes.forEach(function(n){if(n===s||(n.nodeType===1&&n.hasAttribute&&n.hasAttribute('_cs_guard_dxh9p6'))){try{document.body.innerHTML='<div style="position:fixed;inset:0;background:#000;color:#ff4444;display:flex;align-items:center;justify-content:center;font-family:system-ui;z-index:2147483647;font-size:20px;">Tampering Detected</div>';}catch(x){window.location.reload();}}});}});});ob.observe(p,{childList:true,subtree:false});})();(function(){function v(){var s=document.querySelector('script[data-cs-protected]');if(!s){document.body.innerHTML='<div style="position:fixed;inset:0;background:#000;color:#ff4444;display:flex;align-items:center;justify-content:center;font-family:system-ui;z-index:2147483647;font-size:20px;">Protection Removed</div>';return;}if(s.textContent.length<50){document.body.innerHTML='<div style="position:fixed;inset:0;background:#000;color:#ff4444;display:flex;align-items:center;justify-content:center;font-family:system-ui;z-index:2147483647;font-size:20px;">Integrity Failed</div>';}}setInterval(v,4000);setTimeout(v,1500);})();</script>
+<!-- CODESHIELD_PROTECTION_END -->
+<div style="position:absolute;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;" aria-hidden="true" data-shield="fdn1afxjmo6rzm5s"></div>
+</body>
+</html>
